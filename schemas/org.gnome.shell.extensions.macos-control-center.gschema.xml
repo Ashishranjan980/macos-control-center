@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.macos-control-center"
+          path="/org/gnome/shell/extensions/macos-control-center/">
+    <key name="panel-width" type="i">
+      <range min="300" max="460"/>
+      <default>340</default>
+      <summary>Panel width</summary>
+      <description>Width of the Control Center in pixels.</description>
+    </key>
+    <key name="show-backdrop" type="b">
+      <default>false</default>
+      <summary>Show panel backdrop</summary>
+      <description>Draw one glass panel behind all tiles instead of floating tiles.</description>
+    </key>
+    <key name="tile-order" type="as">
+      <default>['wifi', 'nowplaying', 'bluetooth', 'airplane', 'night-light', 'lock', 'dark-mode', 'power', 'screenshot', 'screen-record', 'focus', 'display', 'sound', 'settings']</default>
+      <summary>Tile order</summary>
+      <description>Order in which tiles fill the panel (all tiles, including hidden ones).</description>
+    </key>
+    <key name="tile-hidden" type="as">
+      <default>['screenshot', 'screen-record']</default>
+      <summary>Hidden tiles</summary>
+      <description>Tiles that are switched off.</description>
+    </key>
+    <key name="glass-style" type="s">
+      <choices>
+        <choice value="auto"/>
+        <choice value="dark"/>
+        <choice value="light"/>
+      </choices>
+      <default>'auto'</default>
+      <summary>Glass style</summary>
+      <description>auto follows the dark/light toggle; dark and light force a variant.</description>
+    </key>
+    <key name="accent-color" type="s">
+      <default>''</default>
+      <summary>Accent colour</summary>
+      <description>Hex colour (#rrggbb) of active toggles. Empty means automatic (white on dark glass, graphite on light glass).</description>
+    </key>
+    <key name="blur-strength" type="i">
+      <range min="0" max="40"/>
+      <default>20</default>
+      <summary>Background blur</summary>
+      <description>Strength of the live backdrop blur behind the glass surfaces. 0 disables the blur.</description>
+    </key>
+  </schema>
+</schemalist>

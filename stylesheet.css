@@ -1,0 +1,316 @@
+/* macOS 26 style glass Control Center — neutral & transparent */
+
+.cc-menu {
+  -arrow-rise: 0px;
+  -arrow-border-radius: 38px;
+  -arrow-border-width: 0px;
+  -arrow-border-color: transparent;
+  -arrow-background-color: transparent;
+  -arrow-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  color: white;
+}
+
+/* optional: the old single glass panel behind all tiles (prefs → "Show panel backdrop") */
+.cc-menu.cc-backdrop {
+  -arrow-border-width: 1px;
+  -arrow-border-color: rgba(255, 255, 255, 0.22);
+  -arrow-background-color: rgba(22, 22, 26, 0.52);
+  -arrow-box-shadow: 0 18px 52px rgba(0, 0, 0, 0.55);
+}
+
+.cc-menu .popup-menu-content {
+  padding: 14px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.cc-item {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.cc-root { spacing: 10px; }
+.cc-gap  { spacing: 10px; }
+
+/* ── shared glass surface ──────────────────────────────────────────────
+   A dark translucent base under a white sheen: stays legible on light
+   wallpapers while keeping the frosted-glass look on dark ones. */
+.cc-tile, .cc-round, .cc-slider-box, .cc-settings, .cc-batt-card, .cc-mode {
+  background-color: rgba(26, 26, 30, 0.40);
+  background-gradient-direction: vertical;
+  background-gradient-start: rgba(255, 255, 255, 0.16);
+  background-gradient-end: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  color: white;
+}
+.cc-tile:hover, .cc-tile:focus,
+.cc-round:hover, .cc-round:focus,
+.cc-mode:hover, .cc-mode:focus,
+.cc-settings:hover, .cc-settings:focus {
+  background-gradient-start: rgba(255, 255, 255, 0.26);
+  background-gradient-end: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.30);
+}
+
+/* keep all text legible over bright wallpapers */
+.cc-title, .cc-sub, .cc-slider-label, .cc-row-title, .cc-row-sub,
+.cc-section, .cc-detail-title, .cc-status, .cc-empty, .cc-batt-pct, .cc-mode-label {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+/* ── tiles ── */
+.cc-tile {
+  padding: 0 12px;
+  border-radius: 30px;
+}
+.cc-tile-row { spacing: 10px; }
+
+.cc-title { color: white; font-weight: 600; font-size: 10pt; }
+.cc-sub   { color: rgba(255, 255, 255, 0.75); font-size: 8.5pt; }
+
+.cc-bubble {
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  background-color: rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: white;
+}
+.cc-bubble:hover, .cc-bubble:focus { background-color: rgba(255, 255, 255, 0.32); }
+/* active state: accent fill is applied inline (extension.js), so it can follow the prefs */
+.cc-focus .cc-bubble { background-color: rgba(10, 10, 14, 0.55); }
+
+/* ── now playing ── */
+.cc-np {
+  padding: 12px 16px 12px 16px;
+  border-radius: 30px;
+}
+.cc-np-text { margin-top: 6px; }
+.cc-art {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.9);
+}
+.cc-np-controls { spacing: 8px; }
+.cc-ctrl {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  color: white;
+  background-color: transparent;
+}
+.cc-ctrl:hover { background-color: rgba(255, 255, 255, 0.20); }
+
+/* seek bar under the media controls */
+.cc-menu .cc-root .cc-np .cc-seek {
+  height: 14px;
+  margin-top: 2px;
+  -slider-handle-radius: 4px;
+  -slider-handle-border-width: 0px;
+  -slider-border-width: 0px;
+  color: white;
+}
+
+/* ── round buttons ── */
+.cc-round {
+  padding: 0;
+  border-radius: 30px;
+}
+
+/* ── sliders ── */
+.cc-slider-box {
+  padding: 10px 16px 12px 16px;
+  border-radius: 28px;
+  spacing: 6px;
+}
+.cc-slider-label { color: white; font-weight: 600; font-size: 10pt; }
+.cc-slider-row   { spacing: 10px; }
+.cc-slider-icon  { color: rgba(255, 255, 255, 0.80); }
+
+.cc-menu .cc-root .cc-slider-box .cc-slider {
+  height: 22px;
+  -slider-handle-radius: 9px;
+  -slider-handle-border-width: 0px;
+  -slider-border-width: 0px;
+  color: white;
+}
+
+/* ── battery popover ── */
+.cc-batt-menu { spacing: 10px; }
+.cc-batt-card { padding: 12px 16px; border-radius: 28px; spacing: 6px; }
+.cc-batt-head { spacing: 14px; }
+.cc-batt-pct { color: white; font-weight: 700; font-size: 18pt; }
+.cc-mode-row { spacing: 8px; }
+.cc-mode { padding: 8px 4px; border-radius: 20px; color: white; }
+.cc-mode-inner { spacing: 4px; }
+.cc-mode-label { font-weight: 600; font-size: 8pt; }
+
+/* ── settings pill ── */
+.cc-settings {
+  padding: 5px 22px;
+  border-radius: 18px;
+  font-weight: 600;
+  font-size: 9.5pt;
+}
+
+/* ── detail view ── */
+.cc-detail { spacing: 10px; }
+.cc-detail-head { spacing: 10px; padding: 2px 2px 0 2px; }
+.cc-detail-title { color: white; font-weight: 700; font-size: 13pt; }
+.cc-back {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.14);
+  color: white;
+}
+.cc-back:hover, .cc-back:focus { background-color: rgba(255, 255, 255, 0.28); }
+
+/* on/off switch is drawn with cairo in extension.js */
+.cc-switch {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.cc-scroll { padding: 0; }
+.cc-list { spacing: 6px; }
+.cc-section {
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 700;
+  font-size: 8.5pt;
+  margin: 4px 6px 0 6px;
+}
+.cc-empty { color: rgba(255, 255, 255, 0.72); margin-top: 28px; }
+.cc-status { color: rgba(255, 255, 255, 0.80); font-size: 9pt; }
+
+.cc-row {
+  padding: 9px 12px;
+  border-radius: 20px;
+  background-color: rgba(26, 26, 30, 0.40);
+  background-gradient-direction: vertical;
+  background-gradient-start: rgba(255, 255, 255, 0.14);
+  background-gradient-end: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20);
+  color: white;
+}
+.cc-row:hover, .cc-row:focus {
+  background-gradient-start: rgba(255, 255, 255, 0.24);
+  background-gradient-end: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.30);
+}
+.cc-row-inner { spacing: 10px; }
+.cc-row-title { color: white; font-weight: 600; font-size: 10pt; }
+.cc-row-sub { color: rgba(255, 255, 255, 0.72); font-size: 8.5pt; }
+.cc-row-trail { color: rgba(255, 255, 255, 0.85); }
+
+.cc-pw-card { spacing: 8px; padding: 12px; }
+.cc-pw-entry {
+  background-color: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 7px 12px;
+  color: white;
+  caret-color: white;
+  selection-background-color: rgba(255, 255, 255, 0.35);
+}
+.cc-join {
+  padding: 5px 16px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: #1d1d20;
+  font-weight: 600;
+  font-size: 9.5pt;
+}
+.cc-join:hover, .cc-join:focus { background-color: white; }
+.cc-cancel {
+  background-color: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: white;
+}
+.cc-cancel:hover, .cc-cancel:focus { background-color: rgba(0, 0, 0, 0.42); }
+
+/* ═══ light glass variant ═══════════════════════════════════════════════
+   The menu gets .cc-light when the system is in light mode (or the prefs
+   force it). Same shapes; frosted white surfaces with dark ink. Active
+   toggles use the accent colour, applied inline by extension.js. */
+.cc-menu.cc-light { color: #1d1d20; }
+.cc-menu.cc-light.cc-backdrop {
+  -arrow-border-color: rgba(0, 0, 0, 0.10);
+  -arrow-background-color: rgba(246, 246, 248, 0.62);
+  -arrow-box-shadow: 0 18px 52px rgba(0, 0, 0, 0.28);
+}
+
+.cc-menu.cc-light .cc-tile,
+.cc-menu.cc-light .cc-round,
+.cc-menu.cc-light .cc-slider-box,
+.cc-menu.cc-light .cc-settings,
+.cc-menu.cc-light .cc-batt-card,
+.cc-menu.cc-light .cc-mode,
+.cc-menu.cc-light .cc-row {
+  background-color: rgba(255, 255, 255, 0.46);
+  background-gradient-start: rgba(255, 255, 255, 0.55);
+  background-gradient-end: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  color: #1d1d20;
+}
+.cc-menu.cc-light .cc-tile:hover, .cc-menu.cc-light .cc-tile:focus,
+.cc-menu.cc-light .cc-round:hover, .cc-menu.cc-light .cc-round:focus,
+.cc-menu.cc-light .cc-mode:hover, .cc-menu.cc-light .cc-mode:focus,
+.cc-menu.cc-light .cc-settings:hover, .cc-menu.cc-light .cc-settings:focus,
+.cc-menu.cc-light .cc-row:hover, .cc-menu.cc-light .cc-row:focus {
+  background-gradient-start: rgba(255, 255, 255, 0.72);
+  background-gradient-end: rgba(255, 255, 255, 0.34);
+  border-color: rgba(0, 0, 0, 0.20);
+}
+
+.cc-menu.cc-light .cc-title, .cc-menu.cc-light .cc-slider-label,
+.cc-menu.cc-light .cc-row-title, .cc-menu.cc-light .cc-detail-title,
+.cc-menu.cc-light .cc-batt-pct { color: #1d1d20; text-shadow: none; }
+.cc-menu.cc-light .cc-mode-label { text-shadow: none; }
+.cc-menu.cc-light .cc-sub, .cc-menu.cc-light .cc-row-sub,
+.cc-menu.cc-light .cc-section, .cc-menu.cc-light .cc-empty,
+.cc-menu.cc-light .cc-status {
+  color: rgba(29, 29, 32, 0.68);
+  text-shadow: none;
+}
+.cc-menu.cc-light .cc-slider-icon { color: rgba(29, 29, 32, 0.72); }
+.cc-menu.cc-light .cc-row-trail { color: rgba(29, 29, 32, 0.80); }
+
+.cc-menu.cc-light .cc-bubble {
+  background-color: rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  color: #1d1d20;
+}
+.cc-menu.cc-light .cc-bubble:hover, .cc-menu.cc-light .cc-bubble:focus { background-color: rgba(0, 0, 0, 0.16); }
+.cc-menu.cc-light .cc-focus .cc-bubble { background-color: rgba(0, 0, 0, 0.10); }
+.cc-menu.cc-light .cc-art { background-color: rgba(0, 0, 0, 0.08); color: rgba(29, 29, 32, 0.80); }
+.cc-menu.cc-light .cc-ctrl { color: #1d1d20; }
+.cc-menu.cc-light .cc-ctrl:hover { background-color: rgba(0, 0, 0, 0.10); }
+.cc-menu.cc-light .cc-back { background-color: rgba(0, 0, 0, 0.08); color: #1d1d20; }
+.cc-menu.cc-light .cc-back:hover, .cc-menu.cc-light .cc-back:focus { background-color: rgba(0, 0, 0, 0.16); }
+
+.cc-menu.cc-light .cc-pw-entry {
+  background-color: rgba(255, 255, 255, 0.60);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #1d1d20;
+  caret-color: #1d1d20;
+  selection-background-color: rgba(0, 0, 0, 0.20);
+}
+.cc-menu.cc-light .cc-join { background-color: #2b2b30; color: white; }
+.cc-menu.cc-light .cc-join:hover, .cc-menu.cc-light .cc-join:focus { background-color: #000000; }
+.cc-menu.cc-light .cc-cancel {
+  background-color: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #1d1d20;
+}
+.cc-menu.cc-light .cc-cancel:hover, .cc-menu.cc-light .cc-cancel:focus { background-color: rgba(0, 0, 0, 0.16); }
