@@ -1,5 +1,5 @@
 {
-  "uuid": "macos-control-center@jssate.dev",
+  "uuid": "macos-control-center@ashishranjan",
   "name": "macOS Control Center",
   "description": "Replaces GNOME's Quick Settings with a macOS 26 (Tahoe) style glass Control Center, with a battery popover, light/dark glass, accent colour and configurable tiles.",
   "shell-version": [

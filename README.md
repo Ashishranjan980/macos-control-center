@@ -41,18 +41,18 @@ With the panel backdrop enabled, the whole menu is blurred once instead of every
 
 ## Installation
 
-1. Download the [latest release](https://github.com/Ashishranjan980/macos-control-center/releases/latest) (`macos-control-center@jssate.dev.zip`).
+1. Download the [latest release](https://github.com/Ashishranjan980/macos-control-center/releases/latest) (`macos-control-center@ashishranjan.zip`).
 2. Install the archive:
 
    ```sh
-   gnome-extensions install --force macos-control-center@jssate.dev.zip
+   gnome-extensions install --force macos-control-center@ashishranjan.zip
    ```
 
 3. Log out and log back in — GNOME Shell only loads changed extension code at startup.
 4. Enable it if needed:
 
    ```sh
-   gnome-extensions enable macos-control-center@jssate.dev
+   gnome-extensions enable macos-control-center@ashishranjan
    ```
 
 ## Requirements
