@@ -13,6 +13,7 @@ The glass is a real, live backdrop blur — not a static frost — and its stren
   - Uses the system `Blur` library when it is available, so the blur is trimmed to the rounded corners; falls back to `Shell.BlurEffect` on shells without it
   - Strength slider from 0 to 40 px — 0 switches the effect off completely
   - Optional "panel backdrop" mode: one glass panel behind all tiles instead of floating ones
+  - Coexists with other blur extensions: their popup blur is dropped from these menus so the tiles stay separate
 - Wi-Fi and Bluetooth tiles with detail views: pick a network and connect (with password entry), manage devices
 - Now Playing tile with album art and MPRIS playback controls
 - Airplane Mode and Focus tiles
@@ -62,4 +63,4 @@ With the panel backdrop enabled, the whole menu is blurred once instead of every
 
 ## Note
 
-If you also run another blur extension (for example *Blur my Shell*), avoid enabling its popup blur for this menu — the two would blur on top of each other.
+If you also run another blur extension (for example *Blur my Shell*), its popup blur would otherwise stack on top of ours and draw one big blurred rectangle behind the whole menu, so the tiles stop looking separate. This extension removes that effect from its own menus every time they open, so the tiles always stay floating — *Blur my Shell* keeps blurring every other popup (Quick Settings, notifications, …) as usual.

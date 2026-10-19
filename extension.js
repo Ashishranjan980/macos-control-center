@@ -527,6 +527,39 @@ function makeSwitch(onToggle) {
     return btn;
 }
 
+// ───────────────────── blur-my-shell compatibility ─────────────────────
+// Blur my Shell blurs every `.popup-menu-content`, i.e. the box behind our
+// whole panel, which reads as one big rectangle instead of separate tiles.
+// It has no per-popup opt-out, so drop its effect (and any background class
+// it adds) from our own menus — ours already blur per tile.
+function stripForeignBlur(menu) {
+    if (!menu)
+        return;
+    for (const actor of [menu.box, menu.actor]) {
+        if (!actor)
+            continue;
+        for (const effect of actor.get_effects()) {
+            if ((effect.constructor?.$gtype?.name ?? '').startsWith('Bms'))
+                actor.remove_effect(effect);
+        }
+        const classes = actor.get_style_class_name?.();
+        if (classes) {
+            for (const cls of classes.split(' ').filter(c => c.startsWith('bms-')))
+                actor.remove_style_class_name(cls);
+        }
+    }
+}
+
+// Blur my Shell attaches its effect from an idle handler, so check again after
+// it has had a chance to run.
+function defendMenuFromOtherBlurExtensions(menu) {
+    stripForeignBlur(menu);
+    GLib.timeout_add(GLib.PRIORITY_DEFAULT, 250, () => {
+        stripForeignBlur(menu);
+        return GLib.SOURCE_REMOVE;
+    });
+}
+
 function listRow({icon, fallback = 'image-missing', title, sub = null, trailing = [], onClick}) {
     const btn = new St.Button({style_class: 'cc-row', can_focus: true, track_hover: true, x_expand: true});
     LOOK?.addBlur(btn, 20);
@@ -1731,6 +1764,7 @@ class ControlCenter extends PanelMenu.Button {
 
     // ── open / close / polling ──
     _onOpen() {
+        defendMenuFromOtherBlurExtensions(this.menu);
         this._resetView();
         this._refresh();
         this._stopPoll();
@@ -2168,6 +2202,7 @@ class BatteryIndicator extends PanelMenu.Button {
         this.menu.addMenuItem(item);
         this.menu.connect('open-state-changed', (_m, open) => {
             if (!open) return;
+            defendMenuFromOtherBlurExtensions(this.menu);
             this._sync();
             this._syncProfile();
         });
